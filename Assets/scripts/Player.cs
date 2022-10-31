@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
@@ -15,7 +17,9 @@ public class Player : MonoBehaviour
     float playerJumpVelocity = 7;
     HelperScript helper;
     bool isJumping;
-    public Text scoreText;
+    public TextMeshProUGUI scoreText;
+    public GameObject Slash;
+
     public static int score, oldScore;
 
     // Start is called before the first frame update
@@ -26,11 +30,15 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         helper = gameObject.AddComponent<HelperScript>();
         isJumping = false;
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        UpdateScore();
         
         anim.SetBool("Walk", false);
         anim.SetBool("Duck", false);
@@ -72,6 +80,18 @@ public class Player : MonoBehaviour
             }
         }
 
+        int moveDirection = 1;
+        if (Input.GetKeyDown("z"))
+        {
+            GameObject clone;
+            clone = Instantiate(Slash, transform.position, transform.rotation);
+
+            Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
+
+            rb.velocity = new Vector3(15 * moveDirection, 0, 0);
+
+            rb.transform.position = new Vector3(transform.position.x, transform.position.y + 0, transform.position.z + 1);
+        }
 
     }
 
@@ -96,7 +116,7 @@ public class Player : MonoBehaviour
     void UpdateScore()
     {
         scoreText.text = "Score: " + score.ToString();
-        scoreText.text += "\n";
+        //scoreText.text += "\n";
 
         oldScore = score;
     }

@@ -11,6 +11,7 @@ public class Score : MonoBehaviour
             Destroy(this.gameObject);
 
             Player.score = Player.score + 50;
+            
         }
     }
 

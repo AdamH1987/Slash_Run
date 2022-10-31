@@ -762,7 +762,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!61 &354874179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1606,7 +1606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069376787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.267, y: 0.547, z: 0}
+  m_LocalPosition: {x: 0.919, y: 0.593, z: 0}
   m_LocalScale: {x: 1.12205, y: 0.58473974, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2056,7 +2056,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   touchingPlatform: 0
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 1839896391}
+  Slash: {fileID: 4917230706489101231, guid: 33aa8478bbf718e468807c80f6f2f511, type: 3}
 --- !u!70 &1687448512
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2337,7 +2338,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0008051604, y: 0.011393996}
@@ -2665,7 +2666,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2095183053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.15, y: 3.56, z: 0}
+  m_LocalPosition: {x: -4.01, y: 3.66, z: 0}
   m_LocalScale: {x: 5.4132447, y: 5.33659, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2694,7 +2695,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.000000011010891, y: 0.0151697835}
