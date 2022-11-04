@@ -18,9 +18,11 @@ public class Player : MonoBehaviour
     HelperScript helper;
     bool isJumping;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI healthText;
     public GameObject Slash;
-
-    public static int score, oldScore;
+    public int health;
+    public static int score, oldScore, oldhealth;
+    public Transform restartPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
         helper = gameObject.AddComponent<HelperScript>();
         isJumping = false;
 
+        health = 4;
         
     }
 
@@ -118,6 +121,25 @@ public class Player : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
         //scoreText.text += "\n";
 
+        healthText.text += "LIVES: " + health.ToString();
+
+        oldhealth = health;
         oldScore = score;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            health -= 1;
+
+            Destroy(collision.gameObject);
+            if (health <= 0)
+            {
+                print("Game Over.");
+                transform.position = restartPoint.position;
+                health = 4;
+            }
+        }
     }
 }

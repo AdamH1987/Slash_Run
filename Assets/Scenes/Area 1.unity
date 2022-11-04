@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 354874180}
   m_Layer: 0
   m_Name: Bat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -966,7 +966,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.99
+  orthographic size: 7.06
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1032,7 +1032,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -562, y: 228}
+  m_AnchoredPosition: {x: -299, y: 199}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &618273501
@@ -1803,6 +1803,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16047291, y: 0.09715422}
   m_EdgeRadius: 0
+--- !u!1 &1539438912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1539438913}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1539438913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539438912}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.17, y: -2.63, z: -9.949524}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1572809684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2058,7 +2089,10 @@ MonoBehaviour:
   speed: 2
   touchingPlatform: 0
   scoreText: {fileID: 1839896391}
+  healthText: {fileID: 618273501}
   Slash: {fileID: 4917230706489101231, guid: 33aa8478bbf718e468807c80f6f2f511, type: 3}
+  health: 4
+  restartPoint: {fileID: 1539438913}
 --- !u!70 &1687448512
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2101,7 +2135,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839896389}
   m_LocalRotation: {x: -0, y: 0.052386418, z: -0, w: 0.99862695}
-  m_LocalPosition: {x: 0, y: 0, z: -57}
+  m_LocalPosition: {x: 0, y: 0, z: -31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2110,7 +2144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 6.006, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 549, y: 232}
+  m_AnchoredPosition: {x: 300, y: 199}
   m_SizeDelta: {x: 200, y: 46.7929}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1839896391
