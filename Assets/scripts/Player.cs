@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     float inputHorizontal;
     float inputVertical;
     public bool touchingPlatform;
-    float playerJumpVelocity = 7;
+    float playerJumpVelocity = 6.3f;
     HelperScript helper;
     bool isJumping;
     public TextMeshProUGUI scoreText;
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        speed = 2;
+        speed = 3;
         anim = GetComponent<Animator>();
         helper = gameObject.AddComponent<HelperScript>();
         isJumping = false;
