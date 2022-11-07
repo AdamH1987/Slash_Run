@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
@@ -24,7 +26,8 @@ public class Player : MonoBehaviour
     public static int score, oldScore, oldhealth;
     public Transform restartPoint;
 
-    // Start is called before the first frame update
+  
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -33,7 +36,7 @@ public class Player : MonoBehaviour
         helper = gameObject.AddComponent<HelperScript>();
         isJumping = false;
 
-        health = 4;
+        health = 2;
         
     }
 
@@ -45,6 +48,7 @@ public class Player : MonoBehaviour
         
         anim.SetBool("Walk", false);
         anim.SetBool("Duck", false);
+        anim.SetBool("Death", false);
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -94,6 +98,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector3(15 * moveDirection, 0, 0);
 
             rb.transform.position = new Vector3(transform.position.x, transform.position.y + 0, transform.position.z + 1);
+
         }
 
     }
@@ -121,7 +126,7 @@ public class Player : MonoBehaviour
         scoreText.text = "Score: " + score.ToString();
         //scoreText.text += "\n";
 
-        healthText.text += "LIVES: " + health.ToString();
+        healthText.text = "LIVES: " + health.ToString();
 
         oldhealth = health;
         oldScore = score;
@@ -132,14 +137,20 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             health -= 1;
+            transform.position = restartPoint.position;
 
-            Destroy(collision.gameObject);
             if (health <= 0)
             {
-                print("Game Over.");
-                transform.position = restartPoint.position;
-                health = 4;
+                anim.SetBool("Death", true);
+                Invoke("Gameover", 2.0f);
             }
+;
         }
+
     }
+    void Gameover()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+
 }
