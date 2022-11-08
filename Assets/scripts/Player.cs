@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     public static int score, oldScore, oldhealth;
     public Transform restartPoint;
 
-  
+
 
     void Start()
     {
@@ -35,8 +35,8 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         helper = gameObject.AddComponent<HelperScript>();
         isJumping = false;
-
-        health = 2;
+      
+        health = 4;
         
     }
 
@@ -132,25 +132,26 @@ public class Player : MonoBehaviour
         oldScore = score;
     }
 
+    public bool Alive => health > 0;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             health -= 1;
             transform.position = restartPoint.position;
-
-            if (health <= 0)
-            {
-                anim.SetBool("Death", true);
-                Invoke("Gameover", 2.0f);
-            }
-;
+        }
+        if (!Alive)
+        {
+            Invoke("Gameover", 0.1f);
         }
 
     }
+
     void Gameover()
     {
         SceneManager.LoadScene("GameOver");
+        
     }
 
 }
