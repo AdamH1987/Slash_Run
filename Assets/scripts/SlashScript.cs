@@ -1,20 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+
 
 public class SlashScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    Player GunFlip;
+    HelperScript helper;
+
+
     void Start()
     {
-        Invoke("KillSlash", 0.2f);
+        helper = gameObject.AddComponent<HelperScript>();
+
+        GunFlip = gameObject.GetComponent<Player>();
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-
+        
+        if (GunFlip == true)
+        {
+            helper.FlipObject(true);
+        }
+        else if (GunFlip == false)
+        {
+            helper.FlipObject(false);
+        }
+        Invoke("KillSlash", 0.2f);
     }
 
     void KillSlash()

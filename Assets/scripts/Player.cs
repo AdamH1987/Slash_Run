@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public static int score, oldScore, oldhealth;
     public Transform restartPoint;
     GameObject clone;
+    public bool GunFlip = false;
 
 
 
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         helper = gameObject.AddComponent<HelperScript>();
         isJumping = false;
-      
+
         health = 4;
         score = 0;
     }
@@ -57,12 +58,14 @@ public class Player : MonoBehaviour
             transform.position = new Vector2(transform.position.x + (speed * Time.deltaTime), transform.position.y);
             anim.SetBool("Walk", true);
             helper.FlipObject(false);
+            GunFlip = false;        
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position = new Vector2(transform.position.x - (speed * Time.deltaTime), transform.position.y);
             anim.SetBool("Walk", true);
             helper.FlipObject(true);
+            GunFlip = true;
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
@@ -79,7 +82,7 @@ public class Player : MonoBehaviour
         }
 
         // check for landing
-        if( (isJumping==true) && touchingPlatform )
+        if ((isJumping == true) && touchingPlatform)
         {
             print("yv=" + rb.velocity.y);
             if (rb.velocity.y <= 0)
@@ -94,7 +97,7 @@ public class Player : MonoBehaviour
             int moveDirection = 1;
             if (Input.GetKeyDown("z"))
             {
-                
+
                 clone = Instantiate(Slash, transform.position, transform.rotation);
 
                 Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
@@ -102,6 +105,8 @@ public class Player : MonoBehaviour
                 rb.velocity = new Vector3(15 * moveDirection, 0, 0);
 
                 rb.transform.position = new Vector3(transform.position.x, transform.position.y + 0, transform.position.z + 1);
+
+              
             }
         }
     }
@@ -111,7 +116,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             touchingPlatform = true;
-            
+
         }
     }
 
@@ -128,12 +133,18 @@ public class Player : MonoBehaviour
     {
         scoreText.text = "Score: " + score.ToString();
 
+        if (score == 200f)
+        {
+            Invoke("EzWin", 0.004f);
+        }
 
         healthText.text = "LIVES: " + health.ToString();
 
         oldhealth = health;
         oldScore = score;
     }
+
+
 
     public bool Alive => health > 0;
 
@@ -148,13 +159,25 @@ public class Player : MonoBehaviour
         {
             Invoke("Gameover", 0.1f);
         }
-
     }
+
+
 
     void Gameover()
     {
         SceneManager.LoadScene("GameOver");
-        
     }
 
+    void EzWin()
+    {
+        SceneManager.LoadScene("Winner");
+    }
+
+
 }
+     
+
+
+
+
+
