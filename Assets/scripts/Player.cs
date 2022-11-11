@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     float inputHorizontal;
     float inputVertical;
     public bool touchingPlatform;
-    float playerJumpVelocity = 6.3f;
+    float playerJumpVelocity = 6.4f;
     HelperScript helper;
     bool isJumping;
     public TextMeshProUGUI scoreText;
@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public int health;
     public static int score, oldScore, oldhealth;
     public Transform restartPoint;
+    GameObject clone;
 
 
 
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         isJumping = false;
       
         health = 4;
-        
+        score = 0;
     }
 
     // Update is called once per frame
@@ -45,7 +46,8 @@ public class Player : MonoBehaviour
     {
 
         UpdateScore();
-        
+        ShootWeapon();
+
         anim.SetBool("Walk", false);
         anim.SetBool("Duck", false);
         anim.SetBool("Death", false);
@@ -87,20 +89,21 @@ public class Player : MonoBehaviour
             }
         }
 
-        int moveDirection = 1;
-        if (Input.GetKeyDown("z"))
+        void ShootWeapon()
         {
-            GameObject clone;
-            clone = Instantiate(Slash, transform.position, transform.rotation);
+            int moveDirection = 1;
+            if (Input.GetKeyDown("z"))
+            {
+                
+                clone = Instantiate(Slash, transform.position, transform.rotation);
 
-            Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
+                Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
 
-            rb.velocity = new Vector3(15 * moveDirection, 0, 0);
+                rb.velocity = new Vector3(15 * moveDirection, 0, 0);
 
-            rb.transform.position = new Vector3(transform.position.x, transform.position.y + 0, transform.position.z + 1);
-
+                rb.transform.position = new Vector3(transform.position.x, transform.position.y + 0, transform.position.z + 1);
+            }
         }
-
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -124,7 +127,7 @@ public class Player : MonoBehaviour
     void UpdateScore()
     {
         scoreText.text = "Score: " + score.ToString();
-        //scoreText.text += "\n";
+
 
         healthText.text = "LIVES: " + health.ToString();
 

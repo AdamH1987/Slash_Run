@@ -152,4 +152,14 @@ public class Enemy : MonoBehaviour
         return 0;
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Slash")
+        {
+            Player.score = Player.score + 100;
+            Destroy(this.gameObject);
+            Destroy(collision.gameObject);
+        }
+    }
 }
