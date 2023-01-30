@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public Transform restartPoint;
     GameObject clone;
     public bool GunFlip = false;
+    
 
 
 
@@ -135,6 +136,7 @@ public class Player : MonoBehaviour
 
         if (score == 200f)
         {
+           
             Invoke("EzWin", 0.004f);
         }
 
